@@ -1,7 +1,7 @@
 FROM sixsq/opencv-python:master-arm
 
-COPY requirements.txt /tmp
 WORKDIR /tmp
+COPY requirements.txt .
 
 RUN pip install --upgrade pip
 RUN pip install -r ./requirements.txt
