@@ -8,4 +8,4 @@ RUN pip install -r ./requirements.txt
 
 COPY scripts/ .
 
-CMD ['python3', './main.py', '--time 60']
+CMD ["python3", "./main.py", "-t 60"]
