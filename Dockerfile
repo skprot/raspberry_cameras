@@ -1,3 +1,9 @@
-FROM sixsq/opencv-python:latest
+FROM sixsq/opencv-python:master-arm
 
-RUN pip install -r requirements.txt
+COPY requirements.txt /tmp
+WORKDIR /tmp
+
+RUN pip install --upgrade pip
+RUN pip install -r ./requirements.txt
+
+CMD ['python3', './main.py', '--time 60']
