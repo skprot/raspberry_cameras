@@ -1,7 +1,7 @@
 from time import time
 from picamerathread import PiCameraThread
 import argparse
-import cv2
+#import cv2
 
 
 if __name__ == '__main__':
@@ -40,12 +40,11 @@ if __name__ == '__main__':
             if args.output:
                 cv2.imwrite('{0}/{1}.jpg'.format(args.output, num_frames), frame)
 
-            if not args.silent:
-                print('Frame fps:       ', time() - fps_time)
-
+            print('Frame fps:       ', 1 / (time() - fps_time))
+            
             num_frames += 1
 
-    cv2.destroyAllWindows()
+    #cv2.destroyAllWindows()
     frame_grabber.stop()
 
 
