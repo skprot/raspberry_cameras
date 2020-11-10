@@ -26,7 +26,7 @@ if __name__ == '__main__':
     frame_grabber.capture()
 
     if args.time:
-        print(f'Run camera for {args.frames} seconds')
+        print(f'Run camera for {args.time} seconds')
         num_frames = 0
         current_time = time()
 
