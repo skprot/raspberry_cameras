@@ -1,5 +1,5 @@
 from time import time
-from scripts.picamerathread import PiCameraThread
+from picamerathread import PiCameraThread
 import argparse
 import cv2
 
