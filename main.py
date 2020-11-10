@@ -26,7 +26,7 @@ if __name__ == '__main__':
     frame_grabber.capture()
 
     if args.time:
-        print(f'Run camera for {args.time} seconds')
+        print('Run camera for {} seconds'.format(args.time))
         num_frames = 0
         current_time = time()
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
                 cv2.imshow('Pi Cam', frame)
 
             if args.output:
-                cv2.imwrite(f'{args.output}/{num_frames}.jpg', frame)
+                cv2.imwrite('{0}/{1}.jpg'.format(args.output, num_frames), frame)
 
             if not args.silent:
                 print('Frame fps:       ', time() - fps_time)
