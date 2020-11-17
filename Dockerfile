@@ -10,4 +10,4 @@ RUN usermod -a -G video root
 
 COPY scripts/ .
 
-CMD ["python3", "./main.py", "-t 60"]
+CMD ["python3", "./main.py", "-t 60", "--screen_output"]
