@@ -24,7 +24,6 @@ if __name__ == '__main__':
 
 
     frame_grabber = PiCameraThread(resolution=resolution)
-    frame_grabber.capture()
 
     if args.time:
         print('Run camera for {} seconds'.format(args.time))
@@ -32,7 +31,6 @@ if __name__ == '__main__':
         current_time = time()
 
         while time() - current_time < args.time:
-            fps_time = time()
             frame = frame_grabber.get_frame()
 
             if args.screen_output:
@@ -45,6 +43,6 @@ if __name__ == '__main__':
 
     cv2.destroyAllWindows()
     frame_grabber.stop()
-
+    print('FPS:     ', frame_grabber.print_fps)
 
 
