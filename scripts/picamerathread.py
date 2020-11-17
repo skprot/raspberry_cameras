@@ -28,4 +28,4 @@ class PiCameraThread:
 
     def print_fps(self):
 
-        return self.fps.fps()
+        print(self.fps.fps())
