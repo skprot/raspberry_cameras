@@ -30,7 +30,7 @@ if __name__ == '__main__':
         current_time = time()
 
         while time() - current_time < args.time:
-            print(time() - current_time)
+            #print(time() - current_time)
             frame = frame_grabber.get_frame()
 
             if args.screen_output:
