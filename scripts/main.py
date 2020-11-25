@@ -1,5 +1,5 @@
 from time import time
-from picamerathread import PiCameraThread
+from imutils.video.pivideostream import PiVideoStream
 import argparse
 import cv2
 
@@ -24,28 +24,27 @@ if __name__ == '__main__':
 
     if args.time:
         print('XYU')
-        frame_grabber = PiCameraThread(resolution=resolution)
+        frame_grabber = PiVideoStream(resolution).start()
         print('Run camera for {} seconds'.format(args.time))
         num_frames = 0
         current_time = time()
 
         while time() - current_time < args.time:
-            #print(time() - current_time)
-            frame = frame_grabber.get_frame()
-
+            frame = frame_grabber.read()
+            
             if args.screen_output:
                 try:
-                    cv2.imshow('Pi Cam', frame)
+                    if frame.shape[2] == 3:
+                        cv2.imshow('Pi Cam', frame)
+                        num_frames += 1
+                        key = cv2.waitKey(1) & 0xFF
                 except:
                     pass
 
             if args.output:
                 cv2.imwrite('{0}/{1}.jpg'.format(args.output, num_frames), frame)
-
-            num_frames += 1
             
-        frame_grabber.stop()
-        frame_grabber.print_fps()
+    frame_grabber.stop()
+    print(num_frames / (time() - current_time))
     cv2.destroyAllWindows()
-
-
+    

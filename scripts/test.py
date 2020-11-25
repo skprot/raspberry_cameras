@@ -12,4 +12,5 @@ camera.capture(rawCapture, format="bgr")
 image = rawCapture.array
 
 cv2.imshow("Image", image)
+print(image.shape)
 cv2.waitKey(0) 
