@@ -9,4 +9,6 @@ RUN pip install -r ./requirements.txt
 
 COPY scripts/ .
 
-CMD ["python3", "./test.py", "-t 60", "--screen_output"]
+
+CMD ["python3", "./main.py", "-t 60", "--screen_output"]
+#CMD ["python3", "./test.py"]
