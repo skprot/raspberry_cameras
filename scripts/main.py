@@ -33,14 +33,15 @@ if __name__ == '__main__':
         while time() - current_time < args.time:
             frame, next_frame_index = frame_grabber.read()
             
+            if not args.silent:
+                if next_frame_index != past_frame_index:
+                    num_frames += 1
+                    past_frame_index = next_frame_index
+            
             if args.screen_output:
                 try:
                     cv2.imshow('Pi Cam', frame)
                     key = cv2.waitKey(1) & 0xFF
-
-                    if next_frame_index != past_frame_index:
-                        num_frames += 1
-                        past_frame_index = next_frame_index
 
                 except cv2.error:
                     pass

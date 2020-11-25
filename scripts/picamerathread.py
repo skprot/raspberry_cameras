@@ -7,7 +7,7 @@ from threading import Thread
 
 
 class PiVideoStream:
-    def __init__(self, resolution=(320, 240), framerate=32, **kwargs):
+    def __init__(self, resolution=(320, 240), framerate=90, **kwargs):
         # initialize the camera
         self.camera = PiCamera()
 
@@ -26,7 +26,7 @@ class PiVideoStream:
 
         # initialize the frame and the variable used to indicate
         # if the thread should be stopped
-        self.frame = None
+        self.frame = (None, None)
         self.index = 0
         self.stopped = False
 
