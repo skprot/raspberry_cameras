@@ -14,9 +14,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.resolution == 240:
-        resosution = (320, 240)
-    if args.resolution == 640:
-        resolution = (640, 480)
+        resolution = (432, 240)
+    elif args.resolution == 360:
+        resolution = (640, 368)
+    elif args.resolution == 480:
+        resolution = (864, 480)
     elif args.resolution == 720:
         resolution = (1280, 720)
     elif args.resolution == 1080:
@@ -49,8 +51,11 @@ if __name__ == '__main__':
                     pass
 
             if args.output:
-                cv2.imwrite('{0}/{1}.jpg'.format(args.output, num_frames), frame)
-            
+                try:
+                    cv2.imwrite('~/Desktop/raspberry_cameras/image_examples/{1}.jpg'.format(num_frames), frame)
+                except cv2.error:
+                    pass
+        
         frame_grabber.stop()
-        print(num_frames / (time() - current_time))
+        print('FPS(maybe not true) :  ', num_frames / (time() - current_time))
         cv2.destroyAllWindows()
