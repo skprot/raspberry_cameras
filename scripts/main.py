@@ -13,6 +13,8 @@ if __name__ == '__main__':
     parser.add_argument('--resolution', type=int, default=640, help='Output resolution. Write 1080, 720 or 640 (default=640)')
     args = parser.parse_args()
 
+    if args.resolution == 240:
+        resosution = (320, 240)
     if args.resolution == 640:
         resolution = (640, 480)
     elif args.resolution == 720:
@@ -20,7 +22,7 @@ if __name__ == '__main__':
     elif args.resolution == 1080:
         resolution = (1920, 1080)
     else:
-        resolution = (640, 480)
+        resolution = (320, 240)
 
     if args.time:
         print('Running camera for {} seconds'.format(args.time))
