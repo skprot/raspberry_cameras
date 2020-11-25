@@ -12,7 +12,7 @@ services:
         - /tmp/.X11-unix:/tmp/.X11-unix
      environment:
         LD_LIBRARY_PATH: /opt/vc/lib
-        - DISPLAY=$DISPLAY
+        DISPLAY:
      devices:
         - "/dev/vchiq:/dev/vchiq"
      privileged: true
