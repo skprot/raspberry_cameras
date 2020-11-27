@@ -1,25 +1,9 @@
-import rospy
 import argparse
 import cv2
 
 from time import time
 from picamerathread import PiVideoStream
 
-from std_msgs.msg import String
-from sensor_msgs.msg import Image
-
-
-class DatasetCollector:
-    def __init__(self):
-        self.start_status = None
-        self.timer = None
-
-        self.time_publisher = rospy.Publisher('/time_{}'.format(num), String, queue_size=1)
-        self.image_publisher = rospy.Publisher('/images_{}'.format(num), Image, queue_size=1)
-
-
-    def start_status_callback(self, data):
-        self.start_status = data.data
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog='multi_thread_example.py', description='Arguments for work with raspi camera')
