@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import rospy
 import argparse
@@ -16,14 +16,15 @@ from sensor_msgs.msg import Image
 
 class DatasetCollector:
     def __init__(self, rpi_num: int):
+        self.rpi_num = rpi_num
+        self.node = rospy.init_node(f'camera_{self.rpi_num}', anonymous=True)
         self.start_status = None
         self.timer = None
         self.resolution = (432, 240)
 
-        self.rpi_num = rpi_num
         self.brige = CvBridge()
-        self.time_publisher = rospy.Publisher(f'/cameras/time_{rpi_num}', Float32, queue_size=10)
-        self.image_publisher = rospy.Publisher(f'/cameras/images_{rpi_num}', Image, queue_size=10)
+        self.time_publisher = rospy.Publisher(f'/cameras/time_{self.rpi_num}', Float32, queue_size=10)
+        self.image_publisher = rospy.Publisher(f'/cameras/images_{self.rpi_num}', Image, queue_size=10)
 
         rospy.Subscriber('/cameras/start_status', Bool, self.start_status_callback, queue_size=1)
         rospy.Subscriber('/cameras/args', String, self.args_callback, queue_size=1)

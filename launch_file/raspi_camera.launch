@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="raspi_node" type="main.py" name="raspi_node"/>
+</launch>
