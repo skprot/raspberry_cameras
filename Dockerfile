@@ -16,8 +16,12 @@ COPY requirements.txt .
 RUN apt-get -q update
 RUN apt-get --yes install python-pip
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
 
+RUN sudo bash -c "echo 'start_x=1' >> /boot/config.txt"
+RUN sudo bash -c "echo 'gpu_mem=128' >> /boot/config.txt"
+RUN sudo rpi-update
+RUN sudo raspi-config
+RUN pip install -r requirements.txt
 RUN apt-get install ros-melodic-multimaster-fkie
 
 
