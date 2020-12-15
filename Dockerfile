@@ -14,7 +14,7 @@ COPY requirements.txt .
 
 #RUN apt-get -q update && apt-get -y install libraspberrypi-bin && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN apt-get -q update
-RUN sudo apt --yes install curl
+RUN sudo apt --yes install curl && sudo apt --yes install software-properties-common
 RUN apt-get --yes install python-pip
 RUN pip install --upgrade pip
 
