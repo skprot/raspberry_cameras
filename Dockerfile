@@ -1,5 +1,7 @@
+#!/usr/bin/env bash
+
 #FROM sixsq/opencv-python:master-arm
-FROM arm64v8/ros:melodic-ros-base-stretch
+FROM arm32v7/ros:melodic-ros-base-bionic
 
 ENV CATKIN_WS=/root/catkin_ws
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -10,9 +12,11 @@ RUN mkdir $CATKIN_WS/src/raspi_camera/launch
 #WORKDIR /tmp
 COPY requirements.txt .
 
-RUN apt-get -q update && apt-get -y install libraspberrypi-bin && apt-get clean && rm -rf /var/lib/apt/lists/*
+#RUN apt-get -q update && apt-get -y install libraspberrypi-bin && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get -q update
+RUN apt-get --yes install python-pip
 RUN pip install --upgrade pip
-RUN pip install -r ./requirements.txt
+RUN pip install -r requirements.txt
 
 RUN apt-get install ros-melodic-multimaster-fkie
 
