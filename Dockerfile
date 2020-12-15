@@ -26,3 +26,5 @@ CMD ["roslaunch", "raspi_camera.launch"]
 
 #CMD ["python3", "./test.py"]
 ##USE --add-host ex: host2.test.com:192.168.0.2. It will add new hosts to /etc/hosts
+
+#TODO: EXEC FORMAT ERROR
