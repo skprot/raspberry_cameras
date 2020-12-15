@@ -19,11 +19,14 @@ RUN pip install --upgrade pip
 
 RUN sudo bash -c "echo 'start_x=1' >> /boot/config.txt"
 RUN sudo bash -c "echo 'gpu_mem=128' >> /boot/config.txt"
+RUN curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && chmod +x /usr/bin/rpi-update
 RUN sudo rpi-update
-RUN sudo raspi-config
+RUN sudo add-apt-repository ppa:ubuntu-raspi2/ppa
+RUN sudo apt-get install libraspberrypi-bin libraspberrypi-dev
+RUN echo 'SUBSYSTEM==\"vchiq\",GROUP=\"video\",MODE=\"0660\"' > /etc/udev/rules.d/10-vchiq-permissions.rules && usermod -a -G video ubuntu
+
 RUN pip install -r requirements.txt
 RUN apt-get install ros-melodic-multimaster-fkie
-
 
 COPY ros_package_files/ $CATKIN_WS/src/raspi_camera
 COPY launch_file/ $CATKIN_WS/src/raspi_camera/launch
