@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-<<<<<<< HEAD
-=======
 FROM arm32v7/ros:melodic-ros-base-bionic
 
 ENV CATKIN_WS=/root/catkin_ws
@@ -47,9 +45,3 @@ RUN source /opt/ros/melodic/setup.bash && \
 	source $CATKIN_WS/devel/setup.bash && \
 	echo "source $CATKIN_WS/devel/setup.bash" >> ~/.bashrc && \
 	chmod +x $CATKIN_WS/src/raspi_camera/main.py
-	#rosrun raspi_camera main.py
-
-#CMD ["roslaunch", "raspi_camera", "raspi_camera.launch"]
-
-##USE --add-host ex: host2.test.com:192.168.0.2. It will add new hosts to /etc/hosts
->>>>>>> 78a7be7a0b0f0ab092510f3f63679a6f3dad8f11

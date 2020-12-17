@@ -2,6 +2,7 @@
 
 import sys
 sys.path.append('/usr/lib/python2.7/dist-packages')
+
 import rospy
 import argparse
 
@@ -55,8 +56,6 @@ class DatasetCollector:
 
                 self.image_publisher.publish(self.bridge.cv2_to_imgmsg(frame, "bgr8"))
                 self.time_publisher.publish(time() - self.current_time)
-
-
 
     def start_timer(self):
         self.current_time = time()
