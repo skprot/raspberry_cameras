@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-    <node pkg="master_discovery_fkie" type="master_discovery" name="master_discovery" respawn="true"/>
+    <node pkg="master_discovery_fkie" type="master_discovery" name="master_discovery" respawn="true">
     <!-- <node pkg="fkie_master_discovery" type="master_discovery" name="master_discovery" respawn="true"> -->
             <rosparam file="$(find raspi_camera)/config/raspi_multimaster.yaml" command="load">
     </node>
