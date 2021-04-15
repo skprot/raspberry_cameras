@@ -16,6 +16,6 @@ Also you need to connect to the running container (to switch a tab):
 * ```docker exec -it <container_id> bash```
 
 To set ip for multimaster:
-* ```--add-host ex: host2.test.com:192.168.0.2 ```
+* ```--add-host <name>:<xxx.xxx.x.xxx> --net host ```
   
 It will add new hosts to /etc/hosts
