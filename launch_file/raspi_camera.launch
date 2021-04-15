@@ -7,6 +7,7 @@
     </node>
     <node pkg="master_sync_fkie" type="master_sync" name="master_sync" respawn="true"/>
     <!-- <node pkg="fkie_master_sync" type="master_sync" name="master_sync" respawn="true"/> -->
-    <node pkg="raspi_camera" type="main.py" name="main" respawn="true" args="-n 1"/>
+    <node pkg="raspi_camera" type="main.py" name="main" respawn="true" args="-n 1">
+        <rosparam name="n" value="1"/>
 
 </launch>
