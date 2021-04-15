@@ -63,11 +63,8 @@ class DatasetCollector:
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='main.py', description='Arguments for work with raspi camera')
-    parser.add_argument('-n', '--number', type=int, default=None, help='Set number of raspi from 1 to 6')
-    args = parser.parse_args()
     try:
-        DatasetCollector(args.number)
+        DatasetCollector(1)
     except rospy.ROSInterruptException:
         pass
 
