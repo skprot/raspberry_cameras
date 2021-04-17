@@ -1,16 +1,9 @@
 #!/usr/bin/env bash
 
-FROM duckietown/rpi-duckiebot-base:master18
+FROM skprot/picamera_ros_kinetic:master
 
 ENV READTHEDOCS True
 ENV CATKIN_WS=/root/catkin_ws
-
-COPY requirements.txt .
-RUN apt-get --yes update && \
- 	sudo apt --yes dist-upgrade && \
-	sudo apt-get --yes install ros-kinetic-multimaster-fkie && \
-	sudo apt-get --yes install ros-kinetic-cv-bridge && \
-	pip install --upgrade picamera==1.13
 
 RUN mkdir -p $CATKIN_WS/src && \
 	mkdir $CATKIN_WS/src/raspi_camera && \
@@ -22,7 +15,7 @@ COPY scripts/ $CATKIN_WS/src/raspi_camera
 
 RUN rm /bin/sh && \
 	ln -s /bin/bash /bin/sh
-RUN source /opt/ros/melodic/setup.bash && \
+RUN source /opt/ros/kinetic/setup.bash && \
 	cd $CATKIN_WS/src && \
 	catkin_init_workspace && \
 	cd $CATKIN_WS && \
