@@ -12,7 +12,7 @@ RUN mkdir -p $CATKIN_WS/src && \
 COPY ros_package_files/ $CATKIN_WS/src/raspi_camera
 COPY launch_file/ $CATKIN_WS/src/raspi_camera/launch
 COPY scripts/ $CATKIN_WS/src/raspi_camera
-COPY rosrun.sh .
+COPY rosrun.sh /
 
 
 RUN rm /bin/sh && \
