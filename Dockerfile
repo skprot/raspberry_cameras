@@ -12,6 +12,8 @@ RUN mkdir -p $CATKIN_WS/src && \
 COPY ros_package_files/ $CATKIN_WS/src/raspi_camera
 COPY launch_file/ $CATKIN_WS/src/raspi_camera/launch
 COPY scripts/ $CATKIN_WS/src/raspi_camera
+COPY rosrun.sh .
+
 
 RUN rm /bin/sh && \
 	ln -s /bin/bash /bin/sh
@@ -23,3 +25,5 @@ RUN source /opt/ros/kinetic/setup.bash && \
 	source $CATKIN_WS/devel/setup.bash && \
 	echo "source $CATKIN_WS/devel/setup.bash" >> ~/.bashrc && \
 	chmod +x $CATKIN_WS/src/raspi_camera/main.py
+
+RUN /rosrun.sh
