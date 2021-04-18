@@ -25,6 +25,6 @@ RUN source /opt/ros/kinetic/setup.bash && \
 	source $CATKIN_WS/devel/setup.bash && \
 	echo "source $CATKIN_WS/devel/setup.bash" >> ~/.bashrc && \
 	chmod +x $CATKIN_WS/src/raspi_camera/main.py && \
-        chmod +x /rosrun.sh
+    chmod +x /rosrun.sh
 
 ENTRYPOINT /rosrun.sh
