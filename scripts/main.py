@@ -25,7 +25,7 @@ class DatasetCollector:
         self.timer = None
         self.resolution = (432, 240)
 
-        self.brige = CvBridge()
+        self.bridge = CvBridge()
         self.time_publisher = rospy.Publisher('/cameras/time_{}'.format(self.rpi_num), Float32, queue_size=10)
         self.image_publisher = rospy.Publisher('/cameras/images_{}'.format(self.rpi_num), Image, queue_size=10)
 
