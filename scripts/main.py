@@ -10,6 +10,7 @@ from cv_bridge import CvBridge
 
 from time import time
 from picamerathread import PiVideoStream
+from picamera import PiCamera
 
 from std_msgs.msg import String
 from std_msgs.msg import Float32
@@ -23,7 +24,8 @@ class DatasetCollector:
         self.node = rospy.init_node('camera_{}'.format(self.rpi_num), anonymous=True)
         self.start_status = None
         self.timer = None
-        self.resolution = (432, 240)
+        #self.resolution = (432, 240)
+        self.resolution = (640, 480)
 
         self.bridge = CvBridge()
         self.time_publisher = rospy.Publisher('/cameras/time_{}'.format(self.rpi_num), Float32, queue_size=10)
@@ -32,7 +34,9 @@ class DatasetCollector:
         rospy.Subscriber('/cameras/start_status', Bool, self.start_status_callback, queue_size=1)
         rospy.Subscriber('/cameras/args', String, self.args_callback, queue_size=1)
 
-        self.frame_grabber = PiVideoStream(self.resolution).start()
+        #self.frame_grabber = PiVideoStream(self.resolution).start()
+        self.camera = PiCamera()
+        self.rawCapture = PiRGBArray(self.camera, size=self.resolution)
         self.timer_status = False
         self.current_time = None
         self.run()
@@ -47,15 +51,18 @@ class DatasetCollector:
         self.start_status = False
 
         while not rospy.is_shutdown():
-            frame, next_frame_index = self.frame_grabber.read()
-            
-            if self.start_status:
+            for image in camera.capture_continuous(self.rawCapture, format="bgr", use_video_port=True):
+            #frame, next_frame_index = self.frame_grabber.read()
+                frame = image.array
+                if self.start_status:
 
-                if not self.timer_status:
-                    self.start_timer()
+                    if not self.timer_status:
+                        self.start_timer()
 
-                self.image_publisher.publish(self.bridge.cv2_to_imgmsg(frame, "bgr8"))
-                self.time_publisher.publish(time() - self.current_time)
+                    self.image_publisher.publish(self.bridge.cv2_to_imgmsg(frame, "bgr8"))
+                    self.time_publisher.publish(time() - self.current_time)
+
+                self.rawCapture.truncate(0)
 
     def start_timer(self):
         self.current_time = time()
