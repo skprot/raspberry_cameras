@@ -37,6 +37,8 @@ class DatasetCollector:
 
         #self.frame_grabber = PiVideoStream(self.resolution).start()
         self.camera = PiCamera()
+        self.camera.framerate = 32
+        self.camera.resolution = size=self.resolution
         self.rawCapture = PiRGBArray(self.camera, size=self.resolution)
         self.timer_status = False
         self.current_time = None
