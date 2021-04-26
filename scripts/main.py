@@ -52,7 +52,7 @@ class DatasetCollector:
         self.start_status = False
 
         while not rospy.is_shutdown():
-            for image in camera.capture_continuous(self.rawCapture, format="bgr", use_video_port=True):
+            for image in self.camera.capture_continuous(self.rawCapture, format="bgr", use_video_port=True):
             #frame, next_frame_index = self.frame_grabber.read()
                 frame = image.array
                 if self.start_status:
