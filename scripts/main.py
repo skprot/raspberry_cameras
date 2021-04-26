@@ -11,6 +11,7 @@ from cv_bridge import CvBridge
 from time import time
 from picamerathread import PiVideoStream
 from picamera import PiCamera
+from picamera.array import PiRGBArray
 
 from std_msgs.msg import String
 from std_msgs.msg import Float32
